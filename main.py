@@ -1,9 +1,17 @@
 from fastapi import FastAPI, UploadFile, Form, File
+from fastapi.middleware.cors import CORSMiddleware
 from app.file_handler import extract_text_from_file
 from app.nlp_processing import process_text, score_resume
 from app.models import ResumeRequest
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True
+)
 
 @app.get("/")
 async def root():
