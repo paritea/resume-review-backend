@@ -19,6 +19,7 @@ async def root():
 
 @app.post("/upload")
 async def upload_file(job_description: str, file: UploadFile = File(...)):
+    print(job_description)
     extracted_text = await extract_text_from_file(file)
     pdftext_normalized_list = process_text(extracted_text)
     job_description_list = process_text(job_description)
